@@ -6,6 +6,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	teo "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/teo/v20220901"
 	teov20220901 "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/teo/v20220901"
+	tccommon "github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/common"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/internal/helper"
 )
 
@@ -193,7 +194,7 @@ func TencentTeoL7RuleBranchBasicInfo(depth int) map[string]*schema.Schema {
 												Description: "Whether to enable feature. values: on: enable; off: disable.",
 											},
 											"action": {
-												Type:        schema.TypeInt,
+												Type:        schema.TypeString,
 												Optional:    true,
 												Description: "Cache action. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters. note: when switch is on, this field is required. when switch is off, this field is not required and will not take effect if filled.",
 											},
@@ -748,7 +749,7 @@ func TencentTeoL7RuleBranchBasicInfo(depth int) map[string]*schema.Schema {
 												Description: "Whether to enable origin-pull request parameter query string. values: on: enable; off: disable.",
 											},
 											"action": {
-												Type:        schema.TypeInt,
+												Type:        schema.TypeString,
 												Optional:    true,
 												Description: "Query string mode. this parameter is required when switch is on. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.",
 											},
@@ -776,7 +777,7 @@ func TencentTeoL7RuleBranchBasicInfo(depth int) map[string]*schema.Schema {
 												Description: "Whether to enable the origin-pull request parameter cookie. valid values: on: enable; off: disable.",
 											},
 											"action": {
-												Type:        schema.TypeInt,
+												Type:        schema.TypeString,
 												Optional:    true,
 												Description: "Origin-Pull request parameter cookie mode. this parameter is required when switch is on. valid values are: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.",
 											},
@@ -837,17 +838,19 @@ func TencentTeoL7RuleBranchBasicInfo(depth int) map[string]*schema.Schema {
 									Description: "Origin-Pull protocol configuration. this parameter is required when origintype is ipdomain, origingroup, or loadbalance. valid values are: Http: use http protocol; Https: use https protocol; Follow: follow the protocol.",
 								},
 								"http_origin_port": {
-									Type:        schema.TypeInt,
-									Optional:    true,
-									Description: "Ports for http origin-pull requests. value range: 1-65535. this parameter takes effect only when the origin-pull protocol originprotocol is http or follow.",
+									Type:         schema.TypeInt,
+									Optional:     true,
+									ValidateFunc: tccommon.ValidateIntegerInRange(1, 65535),
+									Description:  "Ports for http origin-pull requests. value range: 1-65535. this parameter takes effect only when the origin-pull protocol originprotocol is http or follow.",
 								},
 								"https_origin_port": {
-									Type:        schema.TypeInt,
-									Optional:    true,
-									Description: "Ports for https origin-pull requests. value range: 1-65535. this parameter takes effect only when the origin-pull protocol originprotocol is https or follow.",
+									Type:         schema.TypeInt,
+									Optional:     true,
+									ValidateFunc: tccommon.ValidateIntegerInRange(1, 65535),
+									Description:  "Ports for https origin-pull requests. value range: 1-65535. this parameter takes effect only when the origin-pull protocol originprotocol is https or follow.",
 								},
 								"private_access": {
-									Type:        schema.TypeInt,
+									Type:        schema.TypeString,
 									Optional:    true,
 									Description: "Whether access to the private object storage origin server is allowed. this parameter is valid only when the origin server type origintype is COS or awss3. valid values: on: enable private authentication; off: disable private authentication. if not specified, the default value is off.",
 								},
@@ -1539,10 +1542,10 @@ func resourceTencentCloudTeoL7AccRuleGetBranchs(rulesMap map[string]interface{})
 						if v, ok := modifyOriginParametersMap["origin_protocol"].(string); ok && v != "" {
 							modifyOriginParameters.OriginProtocol = helper.String(v)
 						}
-						if v, ok := modifyOriginParametersMap["http_origin_port"].(int); ok {
+						if v, ok := modifyOriginParametersMap["http_origin_port"].(int); ok && v != 0 {
 							modifyOriginParameters.HTTPOriginPort = helper.IntInt64(v)
 						}
-						if v, ok := modifyOriginParametersMap["https_origin_port"].(int); ok {
+						if v, ok := modifyOriginParametersMap["https_origin_port"].(int); ok && v != 0 {
 							modifyOriginParameters.HTTPSOriginPort = helper.IntInt64(v)
 						}
 						if v, ok := modifyOriginParametersMap["private_access"].(string); ok && v != "" {

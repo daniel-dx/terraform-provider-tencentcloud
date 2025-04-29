@@ -664,6 +664,7 @@ tencentcloud_kms_list_keys
 tencentcloud_kms_white_box_decrypt_key
 tencentcloud_kms_white_box_device_fingerprints
 tencentcloud_kms_list_algorithms
+tencentcloud_kms_service_status
 
 Resource
 tencentcloud_kms_key
@@ -849,6 +850,7 @@ Resource
 tencentcloud_monitor_tmp_instance
 tencentcloud_monitor_tmp_alert_rule
 tencentcloud_monitor_tmp_exporter_integration
+tencentcloud_monitor_tmp_exporter_integration_v2
 tencentcloud_monitor_tmp_cvm_agent
 tencentcloud_monitor_tmp_scrape_job
 tencentcloud_monitor_tmp_recording_rule
@@ -928,6 +930,7 @@ tencentcloud_postgresql_clone_db_instance
 tencentcloud_postgresql_instance_network_access
 tencentcloud_postgresql_parameters
 tencentcloud_postgresql_instance_ssl_config
+tencentcloud_postgresql_time_window
 
 TencentDB for Redis(crs)
 Data Source
@@ -1422,12 +1425,14 @@ tencentcloud_cls_data_transform
 tencentcloud_cls_cloud_product_log_task
 tencentcloud_cls_notice_content
 tencentcloud_cls_web_callback
+tencentcloud_cls_cloud_product_log_task_v2
 
 Data Source
 tencentcloud_cls_shipper_tasks
 tencentcloud_cls_machines
 tencentcloud_cls_machine_group_configs
 tencentcloud_cls_logsets
+tencentcloud_cls_topics
 
 TencentCloud Lighthouse(Lighthouse)
 Resource
@@ -1502,6 +1507,7 @@ tencentcloud_teo_l7_acc_rule
 tencentcloud_teo_l7_acc_setting
 tencentcloud_teo_security_ip_group
 tencentcloud_teo_security_policy_config
+tencentcloud_teo_dns_record
 
 TencentCloud ServiceMesh(TCM)
 Data Source
@@ -2174,6 +2180,8 @@ tencentcloud_waf_cc_auto_status
 tencentcloud_waf_cc_session
 tencentcloud_waf_ip_access_control
 tencentcloud_waf_ip_access_control_v2
+tencentcloud_waf_log_post_cls_flow
+tencentcloud_waf_log_post_ckafka_flow
 
 Wedata
 Data Source
@@ -2281,6 +2289,7 @@ tencentcloud_cdc_dedicated_clusters
 Resource
 tencentcloud_cdc_site
 tencentcloud_cdc_dedicated_cluster
+tencentcloud_cdc_dedicated_cluster_image_cache
 
 CdwDoris
 Data Source

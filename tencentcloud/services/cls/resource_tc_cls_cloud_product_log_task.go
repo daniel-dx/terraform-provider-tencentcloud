@@ -17,10 +17,11 @@ import (
 
 func ResourceTencentCloudClsCloudProductLogTask() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceTencentCloudClsCloudProductLogTaskCreate,
-		Read:   resourceTencentCloudClsCloudProductLogTaskRead,
-		Update: resourceTencentCloudClsCloudProductLogTaskUpdate,
-		Delete: resourceTencentCloudClsCloudProductLogTaskDelete,
+		DeprecationMessage: "This resource has been deprecated in Terraform TencentCloud provider version 1.81.188. Please use `tencentcloud_cls_cloud_product_log_task_v2` instead.",
+		Create:             resourceTencentCloudClsCloudProductLogTaskCreate,
+		Read:               resourceTencentCloudClsCloudProductLogTaskRead,
+		Update:             resourceTencentCloudClsCloudProductLogTaskUpdate,
+		Delete:             resourceTencentCloudClsCloudProductLogTaskDelete,
 		Importer: &schema.ResourceImporter{
 			State: schema.ImportStatePassthrough,
 		},

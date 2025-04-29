@@ -109,11 +109,10 @@ func ResourceTencentCloudMongodbInstance() *schema.Resource {
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
-			Description: `A list of nodes deployed in multiple availability zones. For more information, please use the API DescribeSpecInfo.
-			- Multi-availability zone deployment nodes can only be deployed in 3 different availability zones. It is not supported to deploy most nodes of the cluster in the same availability zone. For example, a 3-node cluster does not support the deployment of 2 nodes in the same zone.
-			- Version 4.2 and above are not supported.
-			- Read-only disaster recovery instances are not supported.
-			- Basic network cannot be selected.`,
+			Description: "If cloud database instances are deployed in multiple availability zones, specify a list of multiple availability zones.\n" +
+				"	- To deploy an instance with multiple availability zones, the parameter Zone specifies the primary availability zone information of the instance; Availability ZoneList specifies all availability zone information, including the primary availability zone. The input format is as follows: [ap-Guangzhou-2,ap-Guangzhou-3,ap-Guangzhou-4].\n" +
+				"	- You can obtain availability zone information planned in different regions of the cloud database through the interface DescribeSpecInfo, so as to specify effective availability zones.\n" +
+				"	- Multiple availability zone deployment nodes can only be deployed in 3 different availability zones. Deploying most nodes of a cluster in the same availability zone is not supported. For example, a 3-node cluster does not support 2 nodes deployed in the same zone.",
 		},
 		"hidden_zone": {
 			Type:        schema.TypeString,
@@ -553,6 +552,11 @@ func resourceTencentCloudMongodbInstanceUpdate(d *schema.ResourceData, meta inte
 			removeNodeList := v.([]interface{})
 			params["remove_node_list"] = removeNodeList
 		}
+		var inMaintenance int
+		if v, ok := d.GetOkExists("in_maintenance"); ok {
+			inMaintenance = v.(int)
+			params["in_maintenance"] = v.(int)
+		}
 		dealId, err := mongodbService.UpgradeInstance(ctx, instanceId, memory, volume, params)
 		if err != nil {
 			return err
@@ -562,26 +566,27 @@ func resourceTencentCloudMongodbInstanceUpdate(d *schema.ResourceData, meta inte
 			return fmt.Errorf("deal id is empty")
 		}
 
-		errUpdate := resource.Retry(20*tccommon.ReadRetryTimeout, func() *resource.RetryError {
-			dealResponseParams, err := mongodbService.DescribeDBInstanceDeal(ctx, dealId)
-			if err != nil {
-				if sdkError, ok := err.(*errors.TencentCloudSDKError); ok {
-					if sdkError.Code == "InvalidParameter" && sdkError.Message == "deal resource not found." {
-						return resource.RetryableError(err)
+		if inMaintenance == 0 {
+			errUpdate := resource.Retry(20*tccommon.ReadRetryTimeout, func() *resource.RetryError {
+				dealResponseParams, err := mongodbService.DescribeDBInstanceDeal(ctx, dealId)
+				if err != nil {
+					if sdkError, ok := err.(*errors.TencentCloudSDKError); ok {
+						if sdkError.Code == "InvalidParameter" && sdkError.Message == "deal resource not found." {
+							return resource.RetryableError(err)
+						}
 					}
+					return resource.NonRetryableError(err)
 				}
-				return resource.NonRetryableError(err)
-			}
 
-			if *dealResponseParams.Status != MONGODB_STATUS_DELIVERY_SUCCESS {
-				return resource.RetryableError(fmt.Errorf("mongodb status is not delivery success"))
+				if *dealResponseParams.Status != MONGODB_STATUS_DELIVERY_SUCCESS {
+					return resource.RetryableError(fmt.Errorf("mongodb status is not delivery success"))
+				}
+				return nil
+			})
+			if errUpdate != nil {
+				return errUpdate
 			}
-			return nil
-		})
-		if errUpdate != nil {
-			return errUpdate
 		}
-
 	}
 
 	if d.HasChange("instance_name") {

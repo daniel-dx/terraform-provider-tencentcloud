@@ -4,19 +4,19 @@ layout: "tencentcloud"
 page_title: "TencentCloud: tencentcloud_teo_l7_acc_rule"
 sidebar_current: "docs-tencentcloud-resource-teo_l7_acc_rule"
 description: |-
-  Provides a resource to create a teo l7_acc_rule
+  Provides a resource to create a TEO l7 acc rule
 ---
 
 # tencentcloud_teo_l7_acc_rule
 
-Provides a resource to create a teo l7_acc_rule
+Provides a resource to create a TEO l7 acc rule
 
 ~> **NOTE:** This feature only supports the sites in the plans of the Standard Edition and the Enterprise Edition.
 
 ## Example Usage
 
 ```hcl
-resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
+resource "tencentcloud_teo_l7_acc_rule" "example" {
   zone_id = "zone-36bjhygh1bxe"
   rules {
     description = ["1"]
@@ -33,6 +33,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "CacheKey"
         cache_key_parameters {
@@ -46,6 +47,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       sub_rules {
         description = ["1-1"]
         branches {
@@ -60,6 +62,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       sub_rules {
         description = ["1-2"]
         branches {
@@ -75,6 +78,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
       }
     }
   }
+
   rules {
     description = ["2"]
     rule_name   = "音视频直播"
@@ -95,6 +99,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "$${http.request.file_extension} in ['ts', 'mp4', 'm4a', 'm4s']"
           actions {
@@ -108,6 +113,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "*"
           actions {
@@ -125,6 +131,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
       }
     }
   }
+
   rules {
     description = ["3"]
     rule_name   = "大文件下载"
@@ -140,6 +147,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "CacheKey"
         cache_key_parameters {
@@ -153,12 +161,14 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "RangeOriginPull"
         range_origin_pull_parameters {
           switch = "on"
         }
       }
+
       sub_rules {
         description = ["3-1"]
         branches {
@@ -175,6 +185,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
       }
     }
   }
+
   rules {
     description = ["4"]
     rule_name   = "音视频点播"
@@ -190,6 +201,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "CacheKey"
         cache_key_parameters {
@@ -203,12 +215,14 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "RangeOriginPull"
         range_origin_pull_parameters {
           switch = "on"
         }
       }
+
       sub_rules {
         description = ["4-1"]
         branches {
@@ -225,6 +239,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
       }
     }
   }
+
   rules {
     description = ["5"]
     rule_name   = "API 加速"
@@ -238,6 +253,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
           }
         }
       }
+
       actions {
         name = "SmartRouting"
         smart_routing_parameters {
@@ -246,6 +262,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
       }
     }
   }
+
   rules {
     description = ["6"]
     rule_name   = "WordPress 建站"
@@ -266,6 +283,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "$${http.request.uri.path} in ['/']"
           actions {
@@ -277,6 +295,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "$${http.request.file_extension} in ['aspx', 'jsp', 'php', 'asp', 'do', 'dwr', 'cgi', 'fcgi', 'action', 'ashx', 'axd']"
           actions {
@@ -288,6 +307,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "$${http.request.uri.path} in ['/wp-admin/']"
           actions {
@@ -299,6 +319,7 @@ resource "tencentcloud_teo_l7_acc_rule" "teo_l7_acc_rule" {
             }
           }
         }
+
         branches {
           condition = "*"
           actions {
@@ -476,13 +497,13 @@ The `compression_parameters` object of `actions` supports the following:
 
 The `cookie` object of `cache_key_parameters` supports the following:
 
-* `action` - (Optional, Int) Cache action. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters. note: when switch is on, this field is required. when switch is off, this field is not required and will not take effect if filled.
+* `action` - (Optional, String) Cache action. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters. note: when switch is on, this field is required. when switch is off, this field is not required and will not take effect if filled.
 * `switch` - (Optional, String) Whether to enable feature. values: on: enable; off: disable.
 * `values` - (Optional, List) Custom cache key cookie name list.
 
 The `cookie` object of `upstream_request_parameters` supports the following:
 
-* `action` - (Optional, Int) Origin-Pull request parameter cookie mode. this parameter is required when switch is on. valid values are: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.
+* `action` - (Optional, String) Origin-Pull request parameter cookie mode. this parameter is required when switch is on. valid values are: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.
 * `switch` - (Optional, String) Whether to enable the origin-pull request parameter cookie. valid values: on: enable; off: disable.
 * `values` - (Optional, List) Specifies parameter values. this parameter takes effect only when the query string mode action is includecustom or excludecustom, and is used to specify the parameters to be reserved or ignored. up to 10 parameters are supported.
 
@@ -572,7 +593,7 @@ The `modify_origin_parameters` object of `actions` supports the following:
 * `origin_protocol` - (Optional, String) Origin-Pull protocol configuration. this parameter is required when origintype is ipdomain, origingroup, or loadbalance. valid values are: Http: use http protocol; Https: use https protocol; Follow: follow the protocol.
 * `origin_type` - (Optional, String) The origin type. values: IPDomain: ipv4, ipv6, or domain name type origin server; OriginGroup: origin server group type origin server; LoadBalance: cloud load balancer (clb), this feature is in beta test. to use it, please submit a ticket or contact smart customer service; COS: tencent cloud COS origin server; AWSS3: all object storage origin servers that support the aws s3 protocol.
 * `origin` - (Optional, String) Origin server address, which varies according to the value of origintype: When origintype = ipdomain, fill in an ipv4 address, an ipv6 address, or a domain name; When origintype = cos, please fill in the access domain name of the cos bucket; When origintype = awss3, fill in the access domain name of the s3 bucket; When origintype = origingroup, fill in the origin server group id; When origintype = loadbalance, fill in the cloud load balancer instance id. this feature is currently only available to the allowlist.
-* `private_access` - (Optional, Int) Whether access to the private object storage origin server is allowed. this parameter is valid only when the origin server type origintype is COS or awss3. valid values: on: enable private authentication; off: disable private authentication. if not specified, the default value is off.
+* `private_access` - (Optional, String) Whether access to the private object storage origin server is allowed. this parameter is valid only when the origin server type origintype is COS or awss3. valid values: on: enable private authentication; off: disable private authentication. if not specified, the default value is off.
 * `private_parameters` - (Optional, List) Private authentication parameter. this parameter is valid only when origintype = awss3 and privateaccess = on.
 
 The `modify_request_header_parameters` object of `actions` supports the following:
@@ -619,7 +640,7 @@ The `query_string` object of `cache_key_parameters` supports the following:
 
 The `query_string` object of `upstream_request_parameters` supports the following:
 
-* `action` - (Optional, Int) Query string mode. this parameter is required when switch is on. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.
+* `action` - (Optional, String) Query string mode. this parameter is required when switch is on. values: full: retain all; ignore: ignore all; includeCustom: retain partial parameters; excludeCustom: ignore partial parameters.
 * `switch` - (Optional, String) Whether to enable origin-pull request parameter query string. values: on: enable; off: disable.
 * `values` - (Optional, List) Specifies parameter values. this parameter takes effect only when the query string mode action is includecustom or excludecustom, and is used to specify the parameters to be reserved or ignored. up to 10 parameters are supported.
 
@@ -712,8 +733,9 @@ In addition to all arguments above, the following attributes are exported:
 
 ## Import
 
-teo l7_acc_rule can be imported using the zone_id, e.g.
+TEO l7 acc rule can be imported using the zone_id, e.g.
+
 ````
-terraform import tencentcloud_teo_l7_acc_rule.teo_l7_acc_rule zone-297z8rf93cfw
+terraform import tencentcloud_teo_l7_acc_rule.example zone-36bjhygh1bxe
 ````
 

@@ -19,10 +19,11 @@ import (
 
 func ResourceTencentCloudMonitorTmpExporterIntegration() *schema.Resource {
 	return &schema.Resource{
-		Read:   resourceTencentCloudMonitorTmpExporterIntegrationRead,
-		Create: resourceTencentCloudMonitorTmpExporterIntegrationCreate,
-		Update: resourceTencentCloudMonitorTmpExporterIntegrationUpdate,
-		Delete: resourceTencentCloudMonitorTmpExporterIntegrationDelete,
+		DeprecationMessage: "This resource has been deprecated in Terraform TencentCloud provider version 1.81.182. Please use 'tencentcloud_monitor_tmp_exporter_integration_v2' instead.",
+		Read:               resourceTencentCloudMonitorTmpExporterIntegrationRead,
+		Create:             resourceTencentCloudMonitorTmpExporterIntegrationCreate,
+		Update:             resourceTencentCloudMonitorTmpExporterIntegrationUpdate,
+		Delete:             resourceTencentCloudMonitorTmpExporterIntegrationDelete,
 		Schema: map[string]*schema.Schema{
 			"instance_id": {
 				Type:        schema.TypeString,

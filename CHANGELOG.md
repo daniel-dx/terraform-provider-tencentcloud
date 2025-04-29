@@ -1,3 +1,120 @@
+## 1.81.188(April 28 , 2025)
+
+FEATURES:
+
+* **New Resource:** `tencentcloud_cls_cloud_product_log_task_v2` ([#3335](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3335))
+
+ENHANCEMENTS:
+
+* datasource/tencentcloud_cbs_storages: add return value `kms_key_id` ([#3334](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3334))
+* datasource/tencentcloud_cbs_storages_set: add return value `kms_key_id` ([#3334](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3334))
+* resource/tencentcloud_cbs_storage: support `kms_key_id` ([#3334](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3334))
+* resource/tencentcloud_cbs_storage_set: support `kms_key_id` ([#3334](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3334))
+* resource/tencentcloud_cls_cloud_product_log_task: This resource has been deprecated in Terraform TencentCloud provider version 1.81.188. Please use `tencentcloud_cls_cloud_product_log_task_v2` instead. ([#3335](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3335))
+* resource/tencentcloud_vpc_ipv6_cidr_block: update `ipv6_cidr_block` return value ([#3336](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3336))
+
+## 1.81.187(April 27 , 2025)
+
+FEATURES:
+
+* **New Resource:** `tencentcloud_waf_log_post_ckafka_flow` ([#3321](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3321))
+* **New Resource:** `tencentcloud_waf_log_post_cls_flow` ([#3321](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3321))
+
+ENHANCEMENTS:
+
+* resource/tencentcloud_dlc_user: add read retry ([#3333](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3333))
+* resource/tencentcloud_postgresql_parameter_template: update fileds `db_major_version`, `db_engine` attribuite ([#3331](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3331))
+
+## 1.81.186(April 24 , 2025)
+
+FEATURES:
+
+* **New Data Source:** `tencentcloud_kms_service_status` ([#3327](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3327))
+
+ENHANCEMENTS:
+
+* datasource/tencentcloud_kms_keys: support `hsm_cluster_id` ([#3327](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3327))
+* resource/tencentcloud_kms_external_key: support `hsm_cluster_id` ([#3327](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3327))
+* resource/tencentcloud_kms_key: support `hsm_cluster_id` ([#3327](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3327))
+* resource/tencentcloud_vpc_ipv6_cidr_block: support `address_type` ([#3328](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3328))
+
+## 1.81.185(April 23 , 2025)
+
+ENHANCEMENTS:
+
+* resource/tencentcloud_postgresql_readonly_instance: fixed the issue of returning an empty id when creating ([#3324](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3324))
+* resource/tencentcloud_teo_l7_acc_rule: update fileds ([#3325](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3325))
+
+## 1.81.184(April 22 , 2025)
+
+ENHANCEMENTS:
+
+* resource/tencentcloud_cos_bucket: optimize `website` params ([#3323](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3323))
+* resource/tencentcloud_dcdb_hourdb_instance: support modify `shard_memory`, `shard_storage` ([#3320](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3320))
+* resource/tencentcloud_sqlserver_general_cloud_instance: add multi_zones, multi_nodes, dr_zones, disk_encrypt_flag ([#3315](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3315))
+* resource/tencentcloud_teo_l7_acc_rule: update fields properties ([#3322](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3322))
+* resource/tencentcloud_teo_security_policy_config: add `precise_match_rules`, `basic_access_rules` params; deprecated `rules` ([#3318](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3318))
+
+## 1.81.183(April 16 , 2025)
+
+ENHANCEMENTS:
+
+* datasource/tencentcloud_clb_instances: Supported fields `numerical_vpc_id`. ([#3307](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3307))
+* provider: support MFA certification ([#3308](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3308))
+* resource/tencentcloud_cls_config_extra: Fix the problem of failure to modify type. ([#3255](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3255))
+* resource/tencentcloud_eni_ipv4_address: Add deletion operation waiting ([#3303](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3303))
+* resource/tencentcloud_instance: support hpc_cluster_id ([#3312](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3312))
+* resource/tencentcloud_kubernetes_addon: Update field properties ([#3309](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3309))
+* resource/tencentcloud_kubernetes_node_pool: field `pre_start_user_script` support update ([#3313](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3313))
+* resource/tencentcloud_teo_l7_acc_rule: Change the field `private_access` type to `string`. ([#3310](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3310))
+* resource/tencentcloud_vpc_end_point: Optimize query function ([#3304](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3304))
+
+## 1.81.182(April 11 , 2025)
+
+FEATURES:
+
+* **New Data Source:** `tencentcloud_cls_topics` ([#3291](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3291))
+* **New Resource:** `tencentcloud_monitor_tmp_exporter_integration_v2` ([#3290](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3290))
+* **New Resource:** `tencentcloud_postgresql_time_window` ([#3065](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3065))
+
+ENHANCEMENTS:
+
+* datasource/tencentcloud_vpc_acls: update doc ([#3296](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3296))
+* resource/tencentcloud_address_template: update doc ([#3302](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3302))
+* resource/tencentcloud_address_template_group: update doc ([#3302](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3302))
+* resource/tencentcloud_eni_ipv6_address: update code and doc ([#3300](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3300))
+* resource/tencentcloud_monitor_tmp_exporter_integration: This resource has been deprecated in Terraform TencentCloud provider version `1.81.182`. Please use `tencentcloud_monitor_tmp_exporter_integration_v2` instead. ([#3290](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3290))
+* resource/tencentcloud_protocol_template: update doc ([#3302](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3302))
+* resource/tencentcloud_protocol_template_group: update doc ([#3302](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3302))
+* resource/tencentcloud_vpc_acl: update doc ([#3297](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3297))
+* resource/tencentcloud_vpc_end_point_service: updace code and doc ([#3295](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3295))
+
+## 1.81.181(April 9 , 2025)
+
+FEATURES:
+
+* **New Resource:** `tencentcloud_teo_dns_record` ([#3286](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3286))
+
+ENHANCEMENTS:
+
+* datasource/tencentcloud_cos_buckets: Fix the issue of query errors ([#3287](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3287))
+* datasource/tencentcloud_vpn_connections: update code and doc ([#3272](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3272))
+* datasource/tencentcloud_vpn_customer_gateways: update code and doc ([#3273](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3273))
+* datasource/tencentcloud_vpn_gateway_routes: update doc ([#3275](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3275))
+* datasource/tencentcloud_waf_peak_points: update doc ([#3279](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3279))
+* datasource/tencentcloud_waf_ports: update doc ([#3278](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3278))
+* resource/tencentcloud_instance: change `reset` to `reinstall` ([#3285](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3285))
+* resource/tencentcloud_mongodb_instance: support in_maintenance ([#3257](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3257))
+* resource/tencentcloud_mongodb_readonly_instance: support in_maintenance ([#3257](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3257))
+* resource/tencentcloud_mongodb_sharding_instance: support in_maintenance ([#3257](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3257))
+* resource/tencentcloud_mongodb_standby_instance: support in_maintenance ([#3257](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3257))
+* resource/tencentcloud_mysql_password_complexity: update doc ([#3283](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3283))
+* resource/tencentcloud_postgresql_instance: support `monthly_backup_retention_period`, `monthly_backup_period` and `monthly_plan_id` ([#3281](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3281))
+* resource/tencentcloud_tat_command: Optimize code logic ([#3276](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3276))
+* resource/tencentcloud_tat_command: update doc ([#3277](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3277))
+* resource/tencentcloud_vpn_ssl_server: update doc ([#3271](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3271))
+* resource/tencentcloud_waf_modify_access_period: Offline document ([#3280](https://github.com/tencentcloudstack/terraform-provider-tencentcloud/pull/3280))
+
 ## 1.81.180(April 3 , 2025)
 
 FEATURES:
