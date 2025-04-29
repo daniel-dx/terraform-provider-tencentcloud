@@ -277,6 +277,9 @@ github.com/bkielbasa/cyclop/pkg/analyzer
 # github.com/blizzy78/varnamelen v0.8.0
 ## explicit; go 1.16
 github.com/blizzy78/varnamelen
+# github.com/bmatcuk/doublestar/v4 v4.8.1
+## explicit; go 1.16
+github.com/bmatcuk/doublestar/v4
 # github.com/bombsimon/wsl/v3 v3.4.0
 ## explicit; go 1.19
 github.com/bombsimon/wsl/v3
@@ -1309,6 +1312,12 @@ github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tat/v20201028
 # github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcaplusdb v1.0.199
 ## explicit; go 1.14
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcaplusdb/v20190823
+# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcb v1.0.1131
+## explicit; go 1.14
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcb/v20180608
+# github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcbr v1.0.1115
+## explicit; go 1.14
+github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcbr/v20220217
 # github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcm v1.0.547
 ## explicit; go 1.14
 github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcm/v20210413

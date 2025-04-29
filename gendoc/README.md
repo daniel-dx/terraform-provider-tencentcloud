@@ -155,9 +155,9 @@ map[string]*schema.Schema{
 
 ## 文档索引更新
 
-文档索引文件，即 website/tencentcloud.erb 的更新数据来源于 provider.go 的文件注释。
+文档索引文件，即 website/tencentcloud.erb 的更新数据来源于 provider.md 的文件内容。
 
-完成了新的 Data Sources 或 Resources 后，需要更新 provider.go 的文件注释，格式可参考已有的 Data Sources 或 Resources。
+完成了新的 Data Sources 或 Resources 后，需要更新 provider.md 的文件内容，格式可参考已有的 Data Sources 或 Resources。
 
 ### Data Source
 
@@ -165,10 +165,10 @@ map[string]*schema.Schema{
 
 例如：
 
-```go
-CVM
-  Data Source
-    tencentcloud_image
+```markdown
+Cloud Virtual Machine(CVM)
+Data Source
+tencentcloud_image
 ```
 
 如果是通用的 Data Source，则添加到 `Provider Data Sources` 这个类下面。
@@ -179,12 +179,12 @@ CVM
 
 例如：
 
-```go
-CVM
-  Data Source
-    tencentcloud_image
-    ...
+```markdown
+Cloud Virtual Machine(CVM)
+Data Source
+tencentcloud_image
+...
 
-  Resource
-    tencentcloud_instance
+Resource
+tencentcloud_instance
 ```

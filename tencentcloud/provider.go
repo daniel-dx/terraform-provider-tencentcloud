@@ -46,6 +46,7 @@ import (
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/ciam"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/ckafka"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/clb"
+	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/cloudbase"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/cls"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/common"
 	"github.com/tencentcloudstack/terraform-provider-tencentcloud/tencentcloud/services/controlcenter"
@@ -2279,6 +2280,7 @@ func Provider() *schema.Provider {
 			"tencentcloud_mqtt_jwt_authenticator":         mqtt.ResourceTencentCloudMqttJwtAuthenticator(),
 			"tencentcloud_mqtt_jwks_authenticator":        mqtt.ResourceTencentCloudMqttJwksAuthenticator(),
 			"tencentcloud_mqtt_http_authenticator":        mqtt.ResourceTencentCloudMqttHttpAuthenticator(),
+			"tencentcloud_cloudbase_run":                  cloudbase.ResourceTencentCloudCloudbaseRun(),
 		},
 
 		ConfigureFunc: providerConfigure,

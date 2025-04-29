@@ -2312,3 +2312,7 @@ tencentcloud_mqtt_user
 tencentcloud_mqtt_jwt_authenticator
 tencentcloud_mqtt_jwks_authenticator
 tencentcloud_mqtt_http_authenticator
+
+CloudBase
+Resource
+tencentcloud_cloudbase_run

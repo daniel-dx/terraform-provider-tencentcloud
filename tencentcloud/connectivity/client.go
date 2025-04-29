@@ -88,6 +88,8 @@ import (
 	tag "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tag/v20180813"
 	tat "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tat/v20201028"
 	tcaplusdb "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcaplusdb/v20190823"
+	tcb "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcb/v20180608"
+	tcbr "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcbr/v20220217"
 	tcm "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcm/v20210413"
 	tcr "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcr/v20190924"
 	tcss "github.com/tencentcloud/tencentcloud-sdk-go/tencentcloud/tcss/v20201101"
@@ -237,6 +239,8 @@ type TencentCloudClient struct {
 	mqttv20240516Conn           *mqtt.Client
 	cdwpgv20201230Conn          *cdwpg.Client
 	gwlbv20240906Conn           *gwlb.Client
+	tcbConn                     *tcb.Client
+	tcbrConn                    *tcbr.Client
 }
 
 // NewClientProfile returns a new ClientProfile
@@ -2072,4 +2076,42 @@ func (me *TencentCloudClient) UseGwlbV20240906Client() *gwlb.Client {
 	me.gwlbv20240906Conn.WithHttpTransport(&LogRoundTripper{})
 
 	return me.gwlbv20240906Conn
+}
+
+// UseTcbClient returns TCB(CloudBase) client for service
+func (me *TencentCloudClient) UseTcbClient(iacExtInfo ...IacExtInfo) *tcb.Client {
+	var logRoundTripper LogRoundTripper
+	if len(iacExtInfo) != 0 {
+		logRoundTripper.InstanceId = iacExtInfo[0].InstanceId
+	}
+
+	if me.tcbConn != nil {
+		me.tcbConn.WithHttpTransport(&logRoundTripper)
+		return me.tcbConn
+	}
+
+	cpf := me.NewClientProfile(300)
+	me.tcbConn, _ = tcb.NewClient(me.Credential, me.Region, cpf)
+	me.tcbConn.WithHttpTransport(&logRoundTripper)
+
+	return me.tcbConn
+}
+
+// UseTcbrClient returns TCBR client for service
+func (me *TencentCloudClient) UseTcbrClient(iacExtInfo ...IacExtInfo) *tcbr.Client {
+	var logRoundTripper LogRoundTripper
+	if len(iacExtInfo) != 0 {
+		logRoundTripper.InstanceId = iacExtInfo[0].InstanceId
+	}
+
+	if me.tcbrConn != nil {
+		me.tcbrConn.WithHttpTransport(&logRoundTripper)
+		return me.tcbrConn
+	}
+
+	cpf := me.NewClientProfile(300)
+	me.tcbrConn, _ = tcbr.NewClient(me.Credential, me.Region, cpf)
+	me.tcbrConn.WithHttpTransport(&logRoundTripper)
+
+	return me.tcbrConn
 }
